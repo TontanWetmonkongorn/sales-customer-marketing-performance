@@ -8,12 +8,16 @@ Download the repository and open [Connected Sales.pbip](power-bi/connected/Conne
 
 The model connects Customers to Orders, Orders to Order Items and Feedback, Products to Order Items, and Calendar to Orders and Marketing. Six one-to-many relationships support segment and period filtering. A shared date supports period comparisons across sales and marketing. Campaign-to-order attribution requires an additional key.
 
-## Business questions
+## What the dashboard answers
 
-- How do reported order value and order volume change over time?
-- Which customer segments account for the most purchases?
-- Which campaigns have the strongest revenue-to-spend ratios?
-- Which data inconsistencies affect interpretation?
+These answers use the **synthetic data in Connected Sales**, with the month filter set to **All** unless specified. The classroom findings below use the original dataset.
+
+| Business question | Where to look | What the dashboard shows | What to do with it |
+| --- | --- | --- | --- |
+| Did sales soften because fewer orders came in or because orders were smaller? | **Sales Overview** → Monthly results and Orders by month | Reported order value fell **3.57%** from September to October 2024, from **62,320 to 60,093**. Orders fell from **85 to 82**, while average order value stayed near **733**. | Investigate order volume first. Compare those two full months and exclude partial November. |
+| Which customer segment deserves a closer look? | **Customer Insights** → Reported order value by segment and Average feedback rating by customer segment | **Premium** led reported order value at **302,318** and had the lowest average rating at **3.60 out of 5**. | Review Premium feedback before planning a retention campaign. |
+| What should the team investigate for Premium customers? | **Sales and Customer Feedback** → select **Premium**, then read the rating and feedback-category charts | The filter returns **385 responses**. **App Experience** was the most frequent category (**102 responses**), followed by **Product Quality** (**96**). | Review the App Experience responses first. Category counts indicate discussion volume, so check ratings before calling them complaints. |
+| Which channel merits a follow-up campaign test? | **Marketing Performance** → Reported ROAS by channel and Cost per conversion by channel | **Social Media** had the lowest cost per recorded conversion (**16.30**) and the highest calculated ROAS (**4.473×**), very close to **Email (4.470×)**. Both display as **4.47×** at two decimals. | Test Social Media against Email before shifting budget. Reported ROAS does not establish incremental impact. |
 
 ## Data
 
