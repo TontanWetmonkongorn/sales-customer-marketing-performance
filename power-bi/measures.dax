@@ -1,9 +1,9 @@
 // Add each measure individually in Power BI Desktop.
 Reported Order Value = SUM(MonthlySales[reported_order_value])
 
-Orders = SUM(MonthlySales[orders])
+Order Count = SUM(MonthlySales[orders])
 
-Average Order Value = DIVIDE([Reported Order Value], [Orders])
+Average Order Value = DIVIDE([Reported Order Value], [Order Count])
 
 Repeat Purchaser Rate =
     DIVIDE(SUM(CustomerSegments[repeat_purchasers]), SUM(CustomerSegments[purchasing_customers]))

@@ -1,4 +1,8 @@
-# Power BI rebuild
+# Power BI report
+
+Open [Sales Performance.pbip](Sales%20Performance.pbip) in Power BI Desktop. Select **Refresh now** on first open. The published project embeds the aggregate SQL snapshot. To recreate it after updating the CSVs, run `python src/analyze.py` and `python src/build_power_bi.py` with the report closed.
+
+## Manual imports
 
 Run `python src/analyze.py` to generate the four inputs in `data/processed`. In a new Power BI Desktop file, add a text parameter named `ExportFolder` pointing to that folder. Create a blank Power Query named `LoadAggregate` and paste the contents of [LoadAggregate.pq](LoadAggregate.pq) into its Advanced Editor. Create four more blank queries using these expressions.
 
@@ -37,4 +41,4 @@ Add the [DAX measures](measures.dax) individually. A **measure** recalculates fo
 | Customer Insights | Segment bars for reported value and a matrix with purchasing customers, repeat purchasers and repeat purchaser rate. | Regular has 574 purchasing customers and 400 repeat purchasers. |
 | Marketing Performance | Spend and ROAS cards. Campaign and channel matrix with clicks, conversions, CTR, and ROAS. | Email / Referral Program is approximately 2.207×. |
 
-The original classroom PBIX is local. These files are build inputs for a new report and have not been executed in Power BI Desktop.
+The generated project was opened and refreshed in Power BI Desktop. All three pages rendered. The Sales Overview displayed 5,000 orders, Customer Insights showed 574 purchasing and 400 repeat customers in the Regular segment, and Marketing Performance showed 2.207? ROAS for Email / Referral Program.

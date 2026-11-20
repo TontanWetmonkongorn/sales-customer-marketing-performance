@@ -1,0 +1,371 @@
+{
+  "name": "Sales Performance",
+  "compatibilityLevel": 1600,
+  "model": {
+    "culture": "en-US",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "tables": [
+      {
+        "name": "MonthlySales",
+        "columns": [
+          {
+            "name": "month",
+            "sourceColumn": "month",
+            "dataType": "string",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "orders",
+            "sourceColumn": "orders",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "reported_order_value",
+            "sourceColumn": "reported_order_value",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "average_order_value",
+            "sourceColumn": "average_order_value",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "coverage",
+            "sourceColumn": "coverage",
+            "dataType": "string",
+            "summarizeBy": "none"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Reported Order Value",
+            "expression": "SUM(MonthlySales[reported_order_value])",
+            "formatString": "#,##0.00"
+          },
+          {
+            "name": "Order Count",
+            "expression": "SUM(MonthlySales[orders])",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Average Order Value",
+            "expression": "DIVIDE([Reported Order Value], [Order Count])",
+            "formatString": "#,##0.00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "MonthlySales",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "#table(type table [month = text, orders = number, reported_order_value = number, average_order_value = number, coverage = text], {",
+                "    {\"2023-03\", 120, 272878.96, 2273.99, \"Partial\"},",
+                "    {\"2023-04\", 238, 554344.77, 2329.18, \"Within coverage\"},",
+                "    {\"2023-05\", 276, 608213.54, 2203.67, \"Within coverage\"},",
+                "    {\"2023-06\", 232, 505227.66, 2177.71, \"Within coverage\"},",
+                "    {\"2023-07\", 244, 567639.91, 2326.39, \"Within coverage\"},",
+                "    {\"2023-08\", 285, 623472.35, 2187.62, \"Within coverage\"},",
+                "    {\"2023-09\", 262, 571117.81, 2179.84, \"Within coverage\"},",
+                "    {\"2023-10\", 254, 578369.83, 2277.05, \"Within coverage\"},",
+                "    {\"2023-11\", 265, 567783.74, 2142.58, \"Within coverage\"},",
+                "    {\"2023-12\", 268, 615709.03, 2297.42, \"Within coverage\"},",
+                "    {\"2024-01\", 270, 560423.56, 2075.64, \"Within coverage\"},",
+                "    {\"2024-02\", 252, 545090.11, 2163.06, \"Within coverage\"},",
+                "    {\"2024-03\", 251, 543181.85, 2164.07, \"Within coverage\"},",
+                "    {\"2024-04\", 241, 538754.75, 2235.5, \"Within coverage\"},",
+                "    {\"2024-05\", 263, 574163.61, 2183.13, \"Within coverage\"},",
+                "    {\"2024-06\", 248, 539074.85, 2173.69, \"Within coverage\"},",
+                "    {\"2024-07\", 256, 573111.98, 2238.72, \"Within coverage\"},",
+                "    {\"2024-08\", 251, 546194.57, 2176.07, \"Within coverage\"},",
+                "    {\"2024-09\", 247, 518695.03, 2099.98, \"Within coverage\"},",
+                "    {\"2024-10\", 247, 537702.94, 2176.93, \"Within coverage\"},",
+                "    {\"2024-11\", 30, 68157.65, 2271.92, \"Partial\"}",
+                "})"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "CustomerSegments",
+        "columns": [
+          {
+            "name": "customer_segment",
+            "sourceColumn": "customer_segment",
+            "dataType": "string",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "registered_customers",
+            "sourceColumn": "registered_customers",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "purchasing_customers",
+            "sourceColumn": "purchasing_customers",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "repeat_purchasers",
+            "sourceColumn": "repeat_purchasers",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "repeat_pct_of_purchasers",
+            "sourceColumn": "repeat_pct_of_purchasers",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "reported_order_value",
+            "sourceColumn": "reported_order_value",
+            "dataType": "double",
+            "summarizeBy": "none"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Repeat Purchaser Rate",
+            "expression": "DIVIDE(SUM(CustomerSegments[repeat_purchasers]), SUM(CustomerSegments[purchasing_customers]))",
+            "formatString": "0.00%"
+          },
+          {
+            "name": "Purchasing Customers",
+            "expression": "SUM(CustomerSegments[purchasing_customers])",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Repeat Purchasers",
+            "expression": "SUM(CustomerSegments[repeat_purchasers])",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Segment Order Value",
+            "expression": "SUM(CustomerSegments[reported_order_value])",
+            "formatString": "#,##0.00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CustomerSegments",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "#table(type table [customer_segment = text, registered_customers = number, purchasing_customers = number, repeat_purchasers = number, repeat_pct_of_purchasers = number, reported_order_value = number], {",
+                "    {\"Regular\", 639, 574, 400, 69.69, 2890148.66},",
+                "    {\"New\", 628, 530, 361, 68.11, 2795854.48},",
+                "    {\"Premium\", 633, 550, 381, 69.27, 2731329.71},",
+                "    {\"Inactive\", 600, 518, 350, 67.57, 2591975.65}",
+                "})"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "ProductCategories",
+        "columns": [
+          {
+            "name": "category",
+            "sourceColumn": "category",
+            "dataType": "string",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "supplied_units",
+            "sourceColumn": "supplied_units",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "supplied_item_value",
+            "sourceColumn": "supplied_item_value",
+            "dataType": "double",
+            "summarizeBy": "none"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Supplied Item Value",
+            "expression": "SUM(ProductCategories[supplied_item_value])",
+            "formatString": "#,##0.00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "ProductCategories",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "#table(type table [category = text, supplied_units = number, supplied_item_value = number], {",
+                "    {\"Dairy & Breakfast\", 1114, 639222.19},",
+                "    {\"Pharmacy\", 973, 592368.57},",
+                "    {\"Fruits & Vegetables\", 966, 559053.08},",
+                "    {\"Pet Care\", 1003, 539888.75},",
+                "    {\"Household Care\", 1078, 444244.25},",
+                "    {\"Personal Care\", 887, 394894.61},",
+                "    {\"Snacks & Munchies\", 963, 394648.71},",
+                "    {\"Cold Drinks & Juices\", 758, 392717.62},",
+                "    {\"Grocery & Staples\", 895, 359937.82},",
+                "    {\"Baby Care\", 655, 348227.18},",
+                "    {\"Instant & Frozen Food\", 742, 307212.65}",
+                "})"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "CampaignPerformance",
+        "columns": [
+          {
+            "name": "channel",
+            "sourceColumn": "channel",
+            "dataType": "string",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "campaign_name",
+            "sourceColumn": "campaign_name",
+            "dataType": "string",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "impressions",
+            "sourceColumn": "impressions",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "clicks",
+            "sourceColumn": "clicks",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "conversions",
+            "sourceColumn": "conversions",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "spend",
+            "sourceColumn": "spend",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "reported_campaign_revenue",
+            "sourceColumn": "reported_campaign_revenue",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ctr_pct",
+            "sourceColumn": "ctr_pct",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "click_conversion_pct",
+            "sourceColumn": "click_conversion_pct",
+            "dataType": "double",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "recalculated_roas",
+            "sourceColumn": "recalculated_roas",
+            "dataType": "double",
+            "summarizeBy": "none"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Campaign Spend",
+            "expression": "SUM(CampaignPerformance[spend])",
+            "formatString": "#,##0.00"
+          },
+          {
+            "name": "Campaign Revenue",
+            "expression": "SUM(CampaignPerformance[reported_campaign_revenue])",
+            "formatString": "#,##0.00"
+          },
+          {
+            "name": "Campaign ROAS",
+            "expression": "DIVIDE([Campaign Revenue], [Campaign Spend])",
+            "formatString": "0.000"
+          },
+          {
+            "name": "Click-Through Rate",
+            "expression": "DIVIDE(SUM(CampaignPerformance[clicks]), SUM(CampaignPerformance[impressions]))",
+            "formatString": "0.00%"
+          },
+          {
+            "name": "Click-to-Conversion Rate",
+            "expression": "DIVIDE(SUM(CampaignPerformance[conversions]), SUM(CampaignPerformance[clicks]))",
+            "formatString": "0.00%"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CampaignPerformance",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "#table(type table [channel = text, campaign_name = text, impressions = number, clicks = number, conversions = number, spend = number, reported_campaign_revenue = number, ctr_pct = number, click_conversion_pct = number, recalculated_roas = number], {",
+                "    {\"Email\", \"Referral Program\", 833383, 85751, 8701, 449043.99, 991134.1, 10.29, 10.15, 2.207},",
+                "    {\"Email\", \"Festival Offer\", 783712, 77690, 7739, 416025.65, 895068.92, 9.91, 9.96, 2.151},",
+                "    {\"Email\", \"Weekend Special\", 905792, 87066, 10001, 473774.97, 1018570.88, 9.61, 11.49, 2.15},",
+                "    {\"Social Media\", \"Flash Sale\", 730939, 75862, 7297, 376994.69, 791868.76, 10.38, 9.62, 2.1},",
+                "    {\"Email\", \"Email Campaign\", 745071, 80051, 7026, 387808.34, 808202.25, 10.74, 8.78, 2.084},",
+                "    {\"Email\", \"Membership Drive\", 781528, 88281, 8150, 435909.68, 908461.07, 11.3, 9.23, 2.084},",
+                "    {\"SMS\", \"Category Promotion\", 732633, 73537, 7528, 392866.58, 809876.41, 10.04, 10.24, 2.061},",
+                "    {\"SMS\", \"Email Campaign\", 893729, 94705, 8653, 468063.41, 962103.32, 10.6, 9.14, 2.055},",
+                "    {\"Email\", \"App Push Notification\", 786029, 86772, 8287, 435510.18, 894553.62, 11.04, 9.55, 2.054},",
+                "    {\"Social Media\", \"New User Discount\", 799906, 83078, 8490, 439733.72, 902245.34, 10.39, 10.22, 2.052},",
+                "    {\"SMS\", \"App Push Notification\", 731654, 81614, 7902, 437195.47, 885070.25, 11.15, 9.68, 2.024},",
+                "    {\"SMS\", \"Festival Offer\", 814428, 80959, 7954, 418009.91, 837185.11, 9.94, 9.82, 2.003},",
+                "    {\"App\", \"Referral Program\", 773972, 76832, 7457, 407291.2, 811485.8, 9.93, 9.71, 1.992},",
+                "    {\"App\", \"App Push Notification\", 768649, 75555, 8012, 442372.58, 879273.82, 9.83, 10.6, 1.988},",
+                "    {\"SMS\", \"New User Discount\", 782482, 76722, 8270, 423579.38, 840323.27, 9.8, 10.78, 1.984},",
+                "    {\"App\", \"New User Discount\", 880617, 88396, 8687, 492971.1, 972131.07, 10.04, 9.83, 1.972},",
+                "    {\"Social Media\", \"Referral Program\", 748280, 79260, 8492, 464643.12, 913661.36, 10.59, 10.71, 1.966},",
+                "    {\"Email\", \"Category Promotion\", 812047, 84402, 7827, 446843.6, 877797.08, 10.39, 9.27, 1.964},",
+                "    {\"SMS\", \"Referral Program\", 920791, 87459, 8840, 497047.2, 975101.34, 9.5, 10.11, 1.962},",
+                "    {\"SMS\", \"Weekend Special\", 731370, 72919, 7079, 404482.79, 792926.79, 9.97, 9.71, 1.96},",
+                "    {\"Social Media\", \"Membership Drive\", 826239, 76997, 8155, 445917.66, 873231.3, 9.32, 10.59, 1.958},",
+                "    {\"Social Media\", \"Weekend Special\", 783990, 84718, 7854, 432828.8, 846616.37, 10.81, 9.27, 1.956},",
+                "    {\"Social Media\", \"Email Campaign\", 793697, 80580, 7860, 461534.26, 902064.48, 10.15, 9.75, 1.954},",
+                "    {\"SMS\", \"Membership Drive\", 985500, 96570, 8698, 500507.61, 970024.22, 9.8, 9.01, 1.938},",
+                "    {\"App\", \"Festival Offer\", 860414, 80856, 8451, 464783.77, 888805.73, 9.4, 10.45, 1.912},",
+                "    {\"Email\", \"Flash Sale\", 820790, 81840, 8423, 475401.02, 906383.17, 9.97, 10.29, 1.907},",
+                "    {\"App\", \"Flash Sale\", 937870, 95391, 9180, 522436.92, 991796.48, 10.17, 9.62, 1.898},",
+                "    {\"App\", \"Membership Drive\", 740450, 73994, 7547, 407734.85, 773234.66, 9.99, 10.2, 1.896},",
+                "    {\"SMS\", \"Flash Sale\", 774423, 79789, 8311, 456855.19, 866038.61, 10.3, 10.42, 1.896},",
+                "    {\"Social Media\", \"Category Promotion\", 906421, 90029, 9589, 516932.88, 979251.91, 9.93, 10.65, 1.894},",
+                "    {\"Social Media\", \"App Push Notification\", 843675, 81892, 8582, 473910.97, 895472.31, 9.71, 10.48, 1.89},",
+                "    {\"App\", \"Email Campaign\", 860188, 83264, 8897, 493323.66, 929415.17, 9.68, 10.69, 1.884},",
+                "    {\"App\", \"Weekend Special\", 869369, 78965, 8337, 488524.73, 913337.79, 9.08, 10.56, 1.87},",
+                "    {\"Email\", \"New User Discount\", 807342, 84204, 8517, 477170.61, 889160.49, 10.43, 10.11, 1.863},",
+                "    {\"App\", \"Category Promotion\", 872133, 81722, 8624, 493939.94, 915529.97, 9.37, 10.55, 1.854},",
+                "    {\"Social Media\", \"Festival Offer\", 848097, 86423, 8621, 497867.81, 886004.15, 10.19, 9.98, 1.78}",
+                "})"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

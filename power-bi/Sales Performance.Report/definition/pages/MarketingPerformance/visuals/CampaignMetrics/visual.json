@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "CampaignMetrics",
+  "position": {
+    "x": 30,
+    "y": 25,
+    "z": 0,
+    "width": 1300,
+    "height": 700
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CampaignPerformance"
+                    }
+                  },
+                  "Property": "channel"
+                }
+              },
+              "queryRef": "CampaignPerformance.channel",
+              "nativeQueryRef": "channel",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CampaignPerformance"
+                    }
+                  },
+                  "Property": "campaign_name"
+                }
+              },
+              "queryRef": "CampaignPerformance.campaign_name",
+              "nativeQueryRef": "campaign_name",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CampaignPerformance"
+                    }
+                  },
+                  "Property": "Campaign Spend"
+                }
+              },
+              "queryRef": "CampaignPerformance.Campaign Spend",
+              "nativeQueryRef": "Campaign Spend",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CampaignPerformance"
+                    }
+                  },
+                  "Property": "Campaign Revenue"
+                }
+              },
+              "queryRef": "CampaignPerformance.Campaign Revenue",
+              "nativeQueryRef": "Campaign Revenue",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CampaignPerformance"
+                    }
+                  },
+                  "Property": "Campaign ROAS"
+                }
+              },
+              "queryRef": "CampaignPerformance.Campaign ROAS",
+              "nativeQueryRef": "Campaign ROAS",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CampaignPerformance"
+                    }
+                  },
+                  "Property": "Click-Through Rate"
+                }
+              },
+              "queryRef": "CampaignPerformance.Click-Through Rate",
+              "nativeQueryRef": "Click-Through Rate",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CampaignPerformance"
+                    }
+                  },
+                  "Property": "Click-to-Conversion Rate"
+                }
+              },
+              "queryRef": "CampaignPerformance.Click-to-Conversion Rate",
+              "nativeQueryRef": "Click-to-Conversion Rate",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Campaign results by channel'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

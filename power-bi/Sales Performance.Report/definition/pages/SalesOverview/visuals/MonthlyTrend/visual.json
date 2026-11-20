@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "MonthlyTrend",
+  "position": {
+    "x": 30,
+    "y": 25,
+    "z": 0,
+    "width": 1300,
+    "height": 360
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MonthlySales"
+                    }
+                  },
+                  "Property": "month"
+                }
+              },
+              "queryRef": "MonthlySales.month",
+              "nativeQueryRef": "month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MonthlySales"
+                    }
+                  },
+                  "Property": "Reported Order Value"
+                }
+              },
+              "queryRef": "MonthlySales.Reported Order Value",
+              "nativeQueryRef": "Reported Order Value",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Monthly order value | Mar 2023 and Nov 2024 partial'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

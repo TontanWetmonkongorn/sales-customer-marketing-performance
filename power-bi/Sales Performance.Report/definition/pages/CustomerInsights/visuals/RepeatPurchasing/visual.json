@@ -1,0 +1,105 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "RepeatPurchasing",
+  "position": {
+    "x": 30,
+    "y": 390,
+    "z": 0,
+    "width": 1300,
+    "height": 340
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerSegments"
+                    }
+                  },
+                  "Property": "customer_segment"
+                }
+              },
+              "queryRef": "CustomerSegments.customer_segment",
+              "nativeQueryRef": "customer_segment",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerSegments"
+                    }
+                  },
+                  "Property": "Purchasing Customers"
+                }
+              },
+              "queryRef": "CustomerSegments.Purchasing Customers",
+              "nativeQueryRef": "Purchasing Customers",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerSegments"
+                    }
+                  },
+                  "Property": "Repeat Purchasers"
+                }
+              },
+              "queryRef": "CustomerSegments.Repeat Purchasers",
+              "nativeQueryRef": "Repeat Purchasers",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerSegments"
+                    }
+                  },
+                  "Property": "Repeat Purchaser Rate"
+                }
+              },
+              "queryRef": "CustomerSegments.Repeat Purchaser Rate",
+              "nativeQueryRef": "Repeat Purchaser Rate",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Repeat purchasing within the observed period'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

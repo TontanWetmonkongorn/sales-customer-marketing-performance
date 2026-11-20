@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "ProductMix",
+  "position": {
+    "x": 720,
+    "y": 410,
+    "z": 0,
+    "width": 610,
+    "height": 320
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ProductCategories"
+                    }
+                  },
+                  "Property": "category"
+                }
+              },
+              "queryRef": "ProductCategories.category",
+              "nativeQueryRef": "category",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ProductCategories"
+                    }
+                  },
+                  "Property": "Supplied Item Value"
+                }
+              },
+              "queryRef": "ProductCategories.Supplied Item Value",
+              "nativeQueryRef": "Supplied Item Value",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Supplied item value by category'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

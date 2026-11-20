@@ -47,10 +47,10 @@ These are reconciliation questions, not proof that a particular source field is 
 ## Status
 
 - Completed: source inventory, reproducible checks, SQL analysis, aggregate browser report, and business recommendations.
-- Pending: source-definition clarification and a refreshed native Power BI report.
+- The native Power BI project and Excel PivotTable have been verified. Source definitions such as currency and campaign attribution remain unspecified.
 
-The repository does not claim implemented revenue improvements or a completed Power BI dashboard.
+
 
 ## Reproduce the portfolio report
 
-Run `python src/analyze.py` to execute the four SQLite queries and write aggregate CSVs to `data/processed/`. Then run `python src/report.py` and open `reports/portfolio.html` in a browser. See [methods and findings](docs/methods-and-findings.md) for interpretation and interview explanations. The original classroom Power BI report was located and retained locally. The native Excel PivotTable has been verified against SQLite for all 21 observed months. Generate it on Windows with Excel installed by running `powershell -File src/build_excel.ps1` after the SQL export. See [Power BI rebuild files](power-bi/README.md) for typed imports, DAX measures, and page checks. The refreshed PBIX is pending.
+Run `python src/analyze.py` to execute the four SQLite queries and write aggregate CSVs to `data/processed/`. Then run `python src/report.py` and open `reports/portfolio.html` in a browser. See [methods and findings](docs/methods-and-findings.md) for interpretation and interview explanations. The original classroom Power BI report was located and retained locally. The native Excel PivotTable has been verified against SQLite for all 21 observed months. Generate it on Windows with Excel installed by running `powershell -File src/build_excel.ps1` after the SQL export. See [Power BI rebuild files](power-bi/README.md) for typed imports, DAX measures, and page checks. Open the [editable Power BI project](power-bi/Sales%20Performance.pbip) in Desktop. On first open, use Refresh now to load the embedded aggregate tables.
