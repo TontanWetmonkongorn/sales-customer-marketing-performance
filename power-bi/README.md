@@ -42,3 +42,13 @@ Add the [DAX measures](measures.dax) individually. A **measure** recalculates fo
 | Marketing Performance | Spend and ROAS cards. Campaign and channel matrix with clicks, conversions, CTR, and ROAS. | Email / Referral Program is approximately 2.207×. |
 
 The generated project was opened and refreshed in Power BI Desktop. All three pages rendered. The Sales Overview displayed 5,000 orders, Customer Insights showed 574 purchasing and 400 repeat customers in the Regular segment, and Marketing Performance showed 2.207? ROAS for Email / Referral Program.
+
+## Dashboard measures
+
+| Measure | Business use | Definition |
+| --- | --- | --- |
+| Latest full month growth | Check recent sales momentum without comparing an incomplete month | October 2024 reported order value compared with September 2024. This snapshot KPI stays fixed to the latest two full months. |
+| Purchase participation | Compare purchasing activity across customer segments | Customers with at least one observed order divided by all registered customers in the segment. Across the dataset, 2,172 of 2,500 customers purchased (86.88%). |
+| Cost per conversion | Compare how much each channel spent per reported conversion | Total campaign spend divided by total recorded conversions. The overall result is 54.76 in unspecified currency units. The metric depends on the campaign source's conversion definition. |
+
+Each report page uses the same grid, title treatment, four KPI cards, and a footer explaining how to read the metrics. A KPI is a key performance indicator. The card shows a headline measure while the charts and tables show where it comes from.

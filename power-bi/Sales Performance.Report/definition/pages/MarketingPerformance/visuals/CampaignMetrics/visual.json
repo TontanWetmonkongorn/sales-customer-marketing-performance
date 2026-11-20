@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "CampaignMetrics",
   "position": {
-    "x": 30,
-    "y": 25,
+    "x": 28,
+    "y": 476,
     "z": 0,
-    "width": 1300,
-    "height": 700
+    "width": 1304,
+    "height": 208
   },
   "visual": {
     "visualType": "tableEx",
@@ -97,6 +97,36 @@
                       "Entity": "CampaignPerformance"
                     }
                   },
+                  "Property": "Campaign Conversions"
+                }
+              },
+              "queryRef": "CampaignPerformance.Campaign Conversions",
+              "nativeQueryRef": "Campaign Conversions",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CampaignPerformance"
+                    }
+                  },
+                  "Property": "Cost per Conversion"
+                }
+              },
+              "queryRef": "CampaignPerformance.Cost per Conversion",
+              "nativeQueryRef": "Cost per Conversion",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CampaignPerformance"
+                    }
+                  },
                   "Property": "Click-Through Rate"
                 }
               },
@@ -125,6 +155,37 @@
     },
     "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
       "title": [
         {
           "properties": {
@@ -139,6 +200,31 @@
               "expr": {
                 "Literal": {
                   "Value": "'Campaign results by channel'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#14283E'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

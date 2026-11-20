@@ -54,6 +54,16 @@
             "name": "Average Order Value",
             "expression": "DIVIDE([Reported Order Value], [Order Count])",
             "formatString": "#,##0.00"
+          },
+          {
+            "name": "Full Month Order Value",
+            "expression": "CALCULATE([Reported Order Value], KEEPFILTERS(MonthlySales[coverage] = \"Within coverage\"))",
+            "formatString": "#,##0.00"
+          },
+          {
+            "name": "Latest Full Month Growth",
+            "expression": "\nVAR FullMonths = FILTER(ALL(MonthlySales), MonthlySales[coverage] = \"Within coverage\")\nVAR Latest = MAXX(FullMonths, MonthlySales[month])\nVAR Prior = MAXX(FILTER(FullMonths, MonthlySales[month] < Latest), MonthlySales[month])\nVAR CurrentValue = SUMX(FILTER(FullMonths, MonthlySales[month] = Latest), MonthlySales[reported_order_value])\nVAR PriorValue = SUMX(FILTER(FullMonths, MonthlySales[month] = Prior), MonthlySales[reported_order_value])\nRETURN DIVIDE(CurrentValue - PriorValue, PriorValue)",
+            "formatString": "0.00%"
           }
         ],
         "partitions": [
@@ -151,6 +161,11 @@
             "name": "Segment Order Value",
             "expression": "SUM(CustomerSegments[reported_order_value])",
             "formatString": "#,##0.00"
+          },
+          {
+            "name": "Purchase Participation",
+            "expression": "DIVIDE([Purchasing Customers], SUM(CustomerSegments[registered_customers]))",
+            "formatString": "0.00%"
           }
         ],
         "partitions": [
@@ -303,7 +318,17 @@
           {
             "name": "Campaign ROAS",
             "expression": "DIVIDE([Campaign Revenue], [Campaign Spend])",
-            "formatString": "0.000"
+            "formatString": "0.00\"×\""
+          },
+          {
+            "name": "Cost per Conversion",
+            "expression": "DIVIDE([Campaign Spend], SUM(CampaignPerformance[conversions]))",
+            "formatString": "#,##0.00"
+          },
+          {
+            "name": "Campaign Conversions",
+            "expression": "SUM(CampaignPerformance[conversions])",
+            "formatString": "#,##0"
           },
           {
             "name": "Click-Through Rate",

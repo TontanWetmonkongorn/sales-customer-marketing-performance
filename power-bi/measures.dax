@@ -1,12 +1,29 @@
 // Add each measure individually in Power BI Desktop.
+
 Reported Order Value = SUM(MonthlySales[reported_order_value])
 
 Order Count = SUM(MonthlySales[orders])
 
 Average Order Value = DIVIDE([Reported Order Value], [Order Count])
 
-Repeat Purchaser Rate =
-    DIVIDE(SUM(CustomerSegments[repeat_purchasers]), SUM(CustomerSegments[purchasing_customers]))
+Full Month Order Value = CALCULATE([Reported Order Value], KEEPFILTERS(MonthlySales[coverage] = "Within coverage"))
+
+Latest Full Month Growth = VAR FullMonths = FILTER(ALL(MonthlySales), MonthlySales[coverage] = "Within coverage")
+VAR Latest = MAXX(FullMonths, MonthlySales[month])
+VAR Prior = MAXX(FILTER(FullMonths, MonthlySales[month] < Latest), MonthlySales[month])
+VAR CurrentValue = SUMX(FILTER(FullMonths, MonthlySales[month] = Latest), MonthlySales[reported_order_value])
+VAR PriorValue = SUMX(FILTER(FullMonths, MonthlySales[month] = Prior), MonthlySales[reported_order_value])
+RETURN DIVIDE(CurrentValue - PriorValue, PriorValue)
+
+Repeat Purchaser Rate = DIVIDE(SUM(CustomerSegments[repeat_purchasers]), SUM(CustomerSegments[purchasing_customers]))
+
+Purchasing Customers = SUM(CustomerSegments[purchasing_customers])
+
+Repeat Purchasers = SUM(CustomerSegments[repeat_purchasers])
+
+Segment Order Value = SUM(CustomerSegments[reported_order_value])
+
+Purchase Participation = DIVIDE([Purchasing Customers], SUM(CustomerSegments[registered_customers]))
 
 Supplied Item Value = SUM(ProductCategories[supplied_item_value])
 
@@ -16,8 +33,10 @@ Campaign Revenue = SUM(CampaignPerformance[reported_campaign_revenue])
 
 Campaign ROAS = DIVIDE([Campaign Revenue], [Campaign Spend])
 
-Click-Through Rate =
-    DIVIDE(SUM(CampaignPerformance[clicks]), SUM(CampaignPerformance[impressions]))
+Cost per Conversion = DIVIDE([Campaign Spend], SUM(CampaignPerformance[conversions]))
 
-Click-to-Conversion Rate =
-    DIVIDE(SUM(CampaignPerformance[conversions]), SUM(CampaignPerformance[clicks]))
+Campaign Conversions = SUM(CampaignPerformance[conversions])
+
+Click-Through Rate = DIVIDE(SUM(CampaignPerformance[clicks]), SUM(CampaignPerformance[impressions]))
+
+Click-to-Conversion Rate = DIVIDE(SUM(CampaignPerformance[conversions]), SUM(CampaignPerformance[clicks]))

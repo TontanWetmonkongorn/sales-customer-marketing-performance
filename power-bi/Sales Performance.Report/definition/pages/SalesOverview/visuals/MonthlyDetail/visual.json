@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
   "name": "MonthlyDetail",
   "position": {
-    "x": 30,
-    "y": 410,
+    "x": 28,
+    "y": 522,
     "z": 0,
-    "width": 665,
-    "height": 320
+    "width": 808,
+    "height": 162
   },
   "visual": {
     "visualType": "tableEx",
@@ -52,6 +52,21 @@
                       "Entity": "MonthlySales"
                     }
                   },
+                  "Property": "Reported Order Value"
+                }
+              },
+              "queryRef": "MonthlySales.Reported Order Value",
+              "nativeQueryRef": "Reported Order Value",
+              "active": true
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MonthlySales"
+                    }
+                  },
                   "Property": "Order Count"
                 }
               },
@@ -80,6 +95,37 @@
     },
     "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
       "title": [
         {
           "properties": {
@@ -93,7 +139,32 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Order counts and average value'"
+                  "Value": "'Monthly results'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#14283E'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
