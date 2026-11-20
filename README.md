@@ -1,6 +1,6 @@
 # Sales, Customer & Marketing Performance Analysis
 
-An academic analytics project being rebuilt from six professor-provided CSV files. The original Power BI file is unavailable. This repository currently contains the reproducible source-data audit and a dashboard rebuild specification; the rebuilt dashboard is pending.
+An academic analytics project being rebuilt from six professor-provided CSV files. The original classroom Power BI report was located locally. This repository contains the reproducible source-data audit, SQLite analysis, and an aggregate browser report.
 
 ## Business questions
 
@@ -46,7 +46,11 @@ These are reconciliation questions, not proof that a particular source field is 
 
 ## Status
 
-- Completed: source inventory, reproducible structural and reconciliation checks.
-- Pending: source-definition clarification, SQL analysis, Power Query transformations, Power BI measures and three report pages, screenshots, and business recommendations.
+- Completed: source inventory, reproducible checks, SQL analysis, aggregate browser report, and business recommendations.
+- Pending: source-definition clarification and a refreshed native Power BI report.
 
 The repository does not claim implemented revenue improvements or a completed Power BI dashboard.
+
+## Reproduce the portfolio report
+
+Run `python src/analyze.py` to execute the four SQLite queries and write aggregate CSVs to `data/processed/`. Then run `python src/report.py` and open `reports/portfolio.html` in a browser. See [methods and findings](docs/methods-and-findings.md) for interpretation and interview explanations. The original classroom Power BI report was located and retained locally. A refreshed native Power BI model and Excel PivotTable are still pending.
