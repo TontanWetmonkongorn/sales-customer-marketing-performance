@@ -2,6 +2,12 @@
 
 An academic analytics project being rebuilt from six professor-provided CSV files. The original classroom Power BI report was located locally. This repository contains the reproducible source-data audit, SQLite analysis, and an aggregate browser report.
 
+## Open the Connected Sales dashboard
+
+Download the repository and open [Connected Sales.pbip](power-bi/connected/Connected%20Sales.pbip) in Power BI Desktop. Select **Refresh now** if prompted. The public dashboard uses **synthetic demonstration data** so anyone can explore the four pages without the classroom CSVs. The audit and findings below describe the classroom analysis and will differ from the demo KPIs.
+
+The model connects Customers to Orders, Orders to Order Items and Feedback, Products to Order Items, and Calendar to Orders and Marketing. Six one-to-many relationships support segment and period filtering. A shared date supports period comparisons across sales and marketing. Campaign-to-order attribution requires an additional key.
+
 ## Business questions
 
 - How do reported order value and order volume change over time?
@@ -20,7 +26,7 @@ An academic analytics project being rebuilt from six professor-provided CSV file
 | customer_feedback.csv | 5,000 | Feedback record |
 | marketing_performance.csv | 5,400 | Campaign observation |
 
-Source: professor-provided classroom materials. Original publisher, license, currency, and whether records are synthetic have not been confirmed. Raw CSVs are retained locally and excluded from this repository. No customer names, contact details, addresses, or record-level data are published here.
+Source: professor-provided classroom materials. Original publisher, license, currency, and whether records are synthetic have not been confirmed. Raw CSVs are retained locally and excluded from this repository. The published demonstration rows are generated. Original classroom records are excluded.
 
 ## Reproduce the audit
 
@@ -53,4 +59,4 @@ These are reconciliation questions, not proof that a particular source field is 
 
 ## Reproduce the portfolio report
 
-Run `python src/analyze.py` to execute the four SQLite queries and write aggregate CSVs to `data/processed/`. Then run `python src/report.py` and open `reports/portfolio.html` in a browser. See [methods and findings](docs/methods-and-findings.md) for interpretation and interview explanations. The original classroom Power BI report was located and retained locally. The native Excel PivotTable has been verified against SQLite for all 21 observed months. Generate it on Windows with Excel installed by running `powershell -File src/build_excel.ps1` after the SQL export. See [Power BI rebuild files](power-bi/README.md) for typed imports, DAX measures, and page checks. Open the [editable Power BI project](power-bi/Sales%20Performance.pbip) in Desktop. On first open, use Refresh now to load the embedded aggregate tables.
+Run `python src/analyze.py` to execute the four SQLite queries and write aggregate CSVs to `data/processed/`. Then run `python src/report.py` and open `reports/portfolio.html` in a browser. See [methods and findings](docs/methods-and-findings.md) for interpretation and interview explanations. The original classroom Power BI report was located and retained locally. The native Excel PivotTable has been verified against SQLite for all 21 observed months. Generate it on Windows with Excel installed by running `powershell -File src/build_excel.ps1` after the SQL export. See [Power BI rebuild files](power-bi/README.md) for typed imports, DAX measures, and page checks. Open the [previous aggregate Power BI project](power-bi/Sales%20Performance.pbip) in Desktop. On first open, use Refresh now to load the embedded aggregate tables.

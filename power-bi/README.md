@@ -1,5 +1,7 @@
 # Power BI report
 
+The main portfolio report is now [Connected Sales](connected/Connected%20Sales.pbip). It opens with synthetic demo data and contains the relationship model. The instructions below describe the earlier aggregate edition.
+
 Open [Sales Performance.pbip](Sales%20Performance.pbip) in Power BI Desktop. Select **Refresh now** on first open. The published project embeds the aggregate SQL snapshot. To recreate it after updating the CSVs, run `python src/analyze.py` and `python src/build_power_bi.py` with the report closed.
 
 ## Manual imports
